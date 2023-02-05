@@ -2,14 +2,40 @@
 <html>
   <head>
     <title>Registration</title>
-    <style>
-        label{
-            width: 120px;
-            display: inline;
-        }
-    </style>
   </head>
   <body>
+    <style>
+      label {
+        width: 120px;
+        display: inline-block;
+      }
+      .form-field {
+        margin: 10px;
+      }
+      select {
+        width: 165px;
+        height: 24px;
+      }
+      textarea {
+        width: 165x;
+        height: 100px;
+      }
+      #gender label {
+        width: 50px;
+      }
+      #gender input {
+        width: auto;
+        height: 15px;
+      }
+      #course label {
+        width: auto;
+        font-weight: 400;
+      }
+      #course input {
+        width: auto;
+        height: 15px;
+      }
+    </style>
     <section style="padding: 10px">
       <a href="./index.html">Home</a>
       <a href="../05-02-2023/index.html">Curriculum</a>
@@ -17,19 +43,29 @@
     </section>
     <section>
       <form action="/register">
-        <div style="margin-top: 10px">
+        <div class="form-field">
           <label for="name">Name:</label>
-          <input type="text" id="name" placeholder="Enter Name" name="name"/>
+          <input type="text" id="name" placeholder="Enter Name" name="name" />
         </div>
-        <div style="margin-top: 10px">
+        <div class="form-field">
           <label for="email">Email:</label>
-          <input type="email" id="email" placeholder="Enter Email" name="email"/>
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter Email"
+            name="email"
+          />
         </div>
-        <div style="margin-top: 10px">
+        <div class="form-field">
           <label for="mobile">Mobile:</label>
-          <input type="number" id="mobile" placeholder="Enter Mobile Number" name="mobile"/>
+          <input
+            type="number"
+            id="mobile"
+            placeholder="Enter Mobile Number"
+            name="mobile"
+          />
         </div>
-        <div style="margin-top: 10px">
+        <div class="form-field">
           <label for="description">Description:</label>
           <textarea
             type="text"
@@ -38,21 +74,26 @@
             name="description"
           ></textarea>
         </div>
-        <div style="margin-top: 10px">
-          <div>Gender:</div>
+        <div class="form-field" id="gender">
+          <div><strong>Gender:</strong></div>
           <label for="gender">Male:</label>
-          <input type="radio" id="male" name="gender" value="male"/>
+          <input type="radio" id="male" name="gender" value="male" />
           <label for="mobile">Female:</label>
-          <input type="radio" id="female" name="gender" value="female"/>
+          <input type="radio" id="female" name="gender" value="female" />
         </div>
-        <div style="margin-top: 10px">
-          <div>Select Courses:</div>
+        <div class="form-field" id="course">
+          <div><strong>Select Courses:</strong></div>
           <label for="web">Web Development:</label>
-          <input type="checkbox" id="web" name="course" value="web"/>
+          <input type="checkbox" id="web" name="course" value="web" />
           <label for="fullstack">Full Stack Development:</label>
-          <input type="checkbox" id="fullstack" name="course" value="fullstack"/>
+          <input
+            type="checkbox"
+            id="fullstack"
+            name="course"
+            value="fullstack"
+          />
         </div>
-        <div style="margin-top: 10px">
+        <div class="form-field">
           <label for="city">Select City</label>
           <select id="city" name="city">
             <option value="BE">Bareilly</option>
@@ -61,11 +102,11 @@
             <option value="PNQ">Pune</option>
           </select>
         </div>
-        <div style="margin-top: 10px">
+        <div class="form-field">
           <label for="password">Set Password:</label>
           <input type="password" id="password" name="password" />
         </div>
-        <div style="margin-top: 10px">
+        <div class="form-field">
           <button type="submit">Register</button>
         </div>
       </form>
