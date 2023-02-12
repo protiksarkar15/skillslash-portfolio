@@ -1,0 +1,46 @@
+.about-me {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: left;
+    background-image: url("https://images.unsplash.com/photo-1458682625221-3a45f8a844c7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGxpbmtlZGluJTIwY292ZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60");
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}
+
+.link {
+    height: 200px;
+    width: 200px;
+    background-color: aqua;
+    border: 2px dashed white;
+    
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
+} 
+
+.arrow-right {
+    background-color: black;
+    color: white;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    padding: 2px;
+    opacity: 0.6;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+}
+
+.arrow-right:hover {
+    opacity: 1;
+}
+
+.analytics {
+    position: relative;
+
+}
