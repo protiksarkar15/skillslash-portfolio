@@ -36,11 +36,36 @@
     top: 50%;
 }
 
+body {
+    overflow-x: hidden;
+    min-height: 2000px;
+}
+
 .arrow-right:hover {
     opacity: 1;
 }
 
 .analytics {
     position: relative;
+    overflow-x: hidden;
+}
 
+.buttons {
+    background-color: beige;
+    padding: 10px 0 10px 10px;
+    position: sticky;
+    top: 50px;
+    z-index: 100;
+}
+
+.header {
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    border-bottom: 1px solid #ccc;
+    background-color: white;
+    opacity: 0.8;
+    padding: 10px;
+    z-index: 100;
 }
