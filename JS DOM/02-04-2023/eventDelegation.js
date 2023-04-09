@@ -22,6 +22,12 @@ todoWrapper.append(inputWrapper);
 // List
 const listWrapper = document.createElement('section');
 listWrapper.id = 'listWrapper';
+listWrapper.addEventListener('click', function(ev) {
+    if(ev.target.tagName === 'BUTTON') {
+        const selectedId = ev.target.closest('.todoItem').getAttribute('data-id');
+        removeTodoItem(selectedId);
+    }
+});
 
 todoWrapper.append(listWrapper);
 
@@ -79,7 +85,7 @@ function createTodoItem(todo) {
         body: JSON.stringify({
         todo,
         completed: false,
-        userId: 15,
+        userId: 3,
         }),
     })
         .then((res) => res.json())
@@ -94,13 +100,14 @@ function toggleTodoItem(ev) {
     toggleCompletedStatus(selectedTodoItem.id, selectedTodoItem.completed);
 }
 
-function removeTodoItem(ev) {
+function removeTodoItem(selectedId) {
     
-    const selectedTodoItemIndex = todoListData.find(item => item.id == ev.target.parentElement.getAttribute('data-id'));
-    todoListData.splice(selectedTodoItemIndex, 1);
+   // const selectedTodoItemIndex = todoListData.find(item => item.id == ev.target.parentElement.getAttribute('data-id'));
+    todoListData.splice(selectedId, 1);
+    console.log(todoListData);
     clearTodoList();
     renderTodoList();
-    removeTodo(selectedTodoItemIndex.id);
+    removeTodo(selectedId);
 }
 
 function removeTodo(todoId) {
@@ -111,6 +118,33 @@ function removeTodo(todoId) {
       .then((res) => res.json())
       .then(console.log);
 }
+
+function replaceTextBoxWithInputBox(ev) {
+    ev.stopPropagation();
+    const inputBox = document.createElement('input');
+    inputBox.value = ev.target.innerHTML;
+    inputBox.style.width = '100%';
+    const parentEl = ev.target.parentElement;
+    parentEl.replaceChild(inputBox, ev.target);
+    parentEl.querySelector('button').remove();
+
+    inputBox.addEventListener('keypress', (ev) => {
+        ev.stopPropagation();
+        if(ev.key == 'Enter') {
+           
+            const updatedVal = ev.target.value;
+            const selectedId = ev.target.parentElement.getAttribute('data-id');
+            const selectedTodoItemIndex = todoListData.findIndex((item) => {
+                return item.id == selectedId;
+            });
+            todoListData.splice(selectedTodoItemIndex, 1, {...todoListData[selectedTodoItemIndex], todo: updatedVal});
+            clearTodoList();
+            renderTodoList();
+        }
+    });
+}
+
+
 
 
 function renderTodoItem(item) {
@@ -133,10 +167,11 @@ function renderTodoItem(item) {
     const buttonBox = document.createElement('button');
     buttonBox.innerHTML = "Remove";
    // buttonBox.setAttribute('data-id', item.value);
-    buttonBox.onclick = removeTodoItem;
+    //buttonBox.onclick = removeTodoItem;
     todoItem.append(buttonBox);
 
     textBox.innerHTML = item.todo;
+    textBox.onclick = replaceTextBoxWithInputBox;
     if(item.completed) {
         todoItem.classList.add('completed');
         checkBox.checked = true;
@@ -158,3 +193,9 @@ function toggleCompletedStatus(todoId, completed) {
     .then((res) => res.json())
     .then(console.log);
 }
+
+document.querySelector('#description a').addEventListener('click' , function(ev){
+    ev.preventDefault();
+    window.open('https://www.youtube.com', '_blank');
+});
+

@@ -79,7 +79,7 @@ function createTodoItem(todo) {
         body: JSON.stringify({
         todo,
         completed: false,
-        userId: 15,
+        userId: 3,
         }),
     })
         .then((res) => res.json())
@@ -112,6 +112,33 @@ function removeTodo(todoId) {
       .then(console.log);
 }
 
+function replaceTextBoxWithInputBox(ev) {
+    ev.stopPropagation();
+    const inputBox = document.createElement('input');
+    inputBox.value = ev.target.innerHTML;
+    inputBox.style.width = '100%';
+    const parentEl = ev.target.parentElement;
+    parentEl.replaceChild(inputBox, ev.target);
+    parentEl.querySelector('button').remove();
+
+    inputBox.addEventListener('keypress', (ev) => {
+        ev.stopPropagation();
+        if(ev.key == 'Enter') {
+           
+            const updatedVal = ev.target.value;
+            const selectedId = ev.target.parentElement.getAttribute('data-id');
+            const selectedTodoItemIndex = todoListData.findIndex((item) => {
+                return item.id == selectedId;
+            });
+            todoListData.splice(selectedTodoItemIndex, 1, {...todoListData[selectedTodoItemIndex], todo: updatedVal});
+            clearTodoList();
+            renderTodoList();
+        }
+    });
+}
+
+
+
 
 function renderTodoItem(item) {
     const todoItem = document.createElement('li');
@@ -137,6 +164,7 @@ function renderTodoItem(item) {
     todoItem.append(buttonBox);
 
     textBox.innerHTML = item.todo;
+    textBox.onclick = replaceTextBoxWithInputBox;
     if(item.completed) {
         todoItem.classList.add('completed');
         checkBox.checked = true;
@@ -158,3 +186,9 @@ function toggleCompletedStatus(todoId, completed) {
     .then((res) => res.json())
     .then(console.log);
 }
+
+document.querySelector('#description a').addEventListener('click' , function(ev){
+    ev.preventDefault();
+    window.open('https://www.youtube.com', '_blank');
+});
+
